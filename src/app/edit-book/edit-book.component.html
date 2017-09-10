@@ -1,0 +1,36 @@
+<form *ngIf="book" (ngSubmit)="onSubmit()" #bookForm="ngForm">
+	<md-form-field>
+	  	<input mdInput type="text" id="title" 
+	       required [(ngModel)]="demoBook.title" placeholder="Title" name="title" #title="ngModel">
+	    <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
+  			Title is required
+		</div>  
+	</md-form-field>
+	<p>
+		<md-form-field>
+	  		<label for="autur">Autur:</label>
+		  	<input mdInput type="text" id="autur" class="form-control"
+		       required [(ngModel)]="demoBook.autur" name="autur" #autur="ngModel">
+		    <div [hidden]="autur.valid || autur.pristine" class="alert alert-danger">
+	  			Autur is required
+			</div> 
+		</md-form-field>
+	</p>
+
+	 <md-form-field class="example-full-width">
+	  <input mdInput id="date" class="form-control"
+	       required [(ngModel)]="bookDate" name="date" #date="ngModel" [mdDatepicker]="picker" [max]="currDate" placeholder="Choose a date">
+	  <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+	  <md-datepicker touchUi="true" #picker></md-datepicker>
+	  <div [hidden]="date.valid || date.pristine" class="alert alert-danger">
+  			Date is required
+		</div>
+
+	</md-form-field>
+
+
+	<div margin-left="10px">
+	<button md-raised-button (click)="goBack()">Back</button>
+		<button md-raised-button type="submit" class="btn btn-success" [disabled]="!bookForm.form.valid">Save</button>
+	</div>
+</form>
